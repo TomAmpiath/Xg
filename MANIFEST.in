@@ -1,0 +1,1 @@
+recursive-include ./Xg *.py *.pyi
