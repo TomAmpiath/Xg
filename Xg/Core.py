@@ -45,6 +45,6 @@ class XgEnums:
 
 class XgException:
 
-    class UnsupportedColor(Exception): pass
+    class UnsupportedColor(Exception)       : pass
 
-    class UnsupportedColorScalar(Exception): pass
+    class UnsupportedColorScalar(Exception) : pass
