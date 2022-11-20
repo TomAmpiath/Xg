@@ -75,9 +75,9 @@ class MainWindow:
         if not _applicationInstance:
             raise Exception('Application instance is not created.')
 
-        self._width = width
+        self._width  = width
         self._height = height
-        self._title = title
+        self._title  = title
 
         self.backgroundColor = ColorPreset(XgEnums.BaseColor.GREY, XgEnums.Shade.LIGHT).getRGBTuple()
 

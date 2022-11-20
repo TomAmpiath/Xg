@@ -30,10 +30,10 @@ import Xg.Gui
 class Color:
     
     def __init__(
-        self: Xg.Gui.Color,
-        red: Optional[int] = ...,
-        green: Optional[int] = ...,
-        blue: Optional[int] = ...)                       -> None                    : ...
+        self  : Xg.Gui.Color,
+        red   : Optional[int] = ...,
+        green : Optional[int] = ...,
+        blue  : Optional[int] = ...)                     -> None                    : ...
 
     def __add__(self: Xg.Gui.Color, color: Xg.Gui.Color) -> Xg.Gui.Color            : ...
 
@@ -53,9 +53,9 @@ class Color:
 class ColorPreset(Xg.Gui.Color):
 
     def __init__(
-        self: Xg.Gui.ColorPreset,
-        base_color: Xg.Core.XgEnums.BaseColor,
-        shade: Xg.Core.XgEnums.Shade)                   -> None                     : ...
+        self       : Xg.Gui.ColorPreset,
+        base_color : Xg.Core.XgEnums.BaseColor,
+        shade      : Xg.Core.XgEnums.Shade)              -> None                     : ...
 
 # class ShadedColor(Xg.Gui.Color):
 

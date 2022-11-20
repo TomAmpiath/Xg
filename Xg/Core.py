@@ -27,20 +27,20 @@ class XgEnums:
 
     class BaseColor(enum.Enum):
 
-        GREY        : int = enum.auto()
-        RED         : int = enum.auto()
-        GREEN       : int = enum.auto()
-        BLUE        : int = enum.auto()
+        GREY        = enum.auto()
+        RED         = enum.auto()
+        GREEN       = enum.auto()
+        BLUE        = enum.auto()
     
     class Shade(enum.Enum):
 
-        EXTRA_LIGHT : int = enum.auto()
-        LIGHTER     : int = enum.auto()
-        LIGHT       : int = enum.auto()
-        NORMAL      : int = enum.auto()
-        DARK        : int = enum.auto()
-        DARKER      : int = enum.auto()
-        EXTRA_DARK  : int = enum.auto()
+        EXTRA_LIGHT = enum.auto()
+        LIGHTER     = enum.auto()
+        LIGHT       = enum.auto()
+        NORMAL      = enum.auto()
+        DARK        = enum.auto()
+        DARKER      = enum.auto()
+        EXTRA_DARK  = enum.auto()
 
 
 class XgException:
