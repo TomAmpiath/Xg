@@ -39,7 +39,7 @@ class Application:
         if not _applicationInstance:
             _applicationInstance = self
         else:
-            raise Exception('Only single instane of Appplication can be created.')
+            raise Exception("Only single instane of Appplication can be created.")
         self._mainWindow = None
 
     def exec(self):
@@ -53,13 +53,13 @@ class Application:
 
                 glfw.swap_buffers(self._mainWindow._glfwWindow)
 
+                GL.glGetError()
+
             glfw.terminate()
-        else:
-            return
 
 
 class MainWindow:
-    def __init__(self, title=inspect.stack()[-1].filename.split('/')[-1].rstrip('.py'), width=800, height=600):
+    def __init__(self, title=inspect.stack()[-1].filename.split("/")[-1].rstrip(".py"), width=800, height=600):
         """The main window of the application
 
         Parameters
@@ -73,20 +73,20 @@ class MainWindow:
         """
         global _applicationInstance
         if not _applicationInstance:
-            raise Exception('Application instance is not created.')
+            raise Exception("Application instance is not created.")
 
-        self._width  = width
+        self._width = width
         self._height = height
-        self._title  = title
+        self._title = title
 
-        self.backgroundColor = ColorPreset(XgEnums.BaseColor.GREY, XgEnums.Shade.LIGHT).getRGBTuple()
+        self.backgroundColor = ColorPreset(XgEnums.BaseColor.GREY, XgEnums.Shade.LIGHTER).getRGBTupleClamped()
 
         # initializing glfw library
         if not glfw.init():
-            raise Exception('glfw cannot be initialized')
-    
+            raise Exception("glfw cannot be initialized")
+
     def setBackgroundColor(self, color):
-        self.backgroundColor = color.getRGBTuple()
+        self.backgroundColor = color.getRGBTupleClamped()
 
     def show(self):
         """Show the main window"""
@@ -97,14 +97,12 @@ class MainWindow:
         # check if window was created
         if not self._glfwWindow:
             glfw.terminate()
-            raise Exception('glfw window can not be created')
+            raise Exception("glfw window can not be created")
 
         # set window position
         glfw.set_window_pos(self._glfwWindow, 400, 200)
 
         # make the context current
         glfw.make_context_current(self._glfwWindow)
-
-        GL.glClearColor(*self.backgroundColor, 1)
 
         _applicationInstance._mainWindow = self

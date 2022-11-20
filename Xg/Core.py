@@ -24,14 +24,13 @@ import enum
 
 
 class XgEnums:
-
     class BaseColor(enum.Enum):
 
         GREY        = enum.auto()
         RED         = enum.auto()
         GREEN       = enum.auto()
         BLUE        = enum.auto()
-    
+
     class Shade(enum.Enum):
 
         EXTRA_LIGHT = enum.auto()
@@ -44,7 +43,8 @@ class XgEnums:
 
 
 class XgException:
+    class UnsupportedColor(Exception):
+        pass
 
-    class UnsupportedColor(Exception)       : pass
-
-    class UnsupportedColorScalar(Exception) : pass
+    class UnsupportedColorScalar(Exception):
+        pass

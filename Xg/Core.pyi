@@ -25,27 +25,23 @@ from __future__ import annotations
 import enum
 
 class XgEnums:
-
     class BaseColor(enum.Enum):
 
-        GREY        : int = ... # enum.auto()
-        RED         : int = ... # enum.auto()
-        GREEN       : int = ... # enum.auto()
-        BLUE        : int = ... # enum.auto()
-    
+        GREY        : int = ...  # enum.auto()
+        RED         : int = ...  # enum.auto()
+        GREEN       : int = ...  # enum.auto()
+        BLUE        : int = ...  # enum.auto()
+
     class Shade(enum.Enum):
 
-        EXTRA_LIGHT : int = ... # enum.auto()
-        LIGHTER     : int = ... # enum.auto()
-        LIGHT       : int = ... # enum.auto()
-        NORMAL      : int = ... # enum.auto()
-        DARK        : int = ... # enum.auto()
-        DARKER      : int = ... # enum.auto()
-        EXTRA_DARK  : int = ... # enum.auto()
-
+        EXTRA_LIGHT : int = ...  # enum.auto()
+        LIGHTER     : int = ...  # enum.auto()
+        LIGHT       : int = ...  # enum.auto()
+        NORMAL      : int = ...  # enum.auto()
+        DARK        : int = ...  # enum.auto()
+        DARKER      : int = ...  # enum.auto()
+        EXTRA_DARK  : int = ...  # enum.auto()
 
 class XgException:
-
     class UnsupportedColor(Exception)       : ...
-
     class UnsupportedColorScalar(Exception) : ...

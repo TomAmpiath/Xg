@@ -98,27 +98,38 @@ class Color:
     def getRGBTuple(self):
         return self.red, self.green, self.blue
 
+    def getRGBTupleClamped(self):
+        return self.red / 255.0, self.green / 255.0, self.blue / 255.0
+
 
 class ColorPreset(Color):
 
     def __init__(self, base_color, shade):
-        self.color      = Color(0, 0, 0)
+
+        color = Color(0, 0, 0)
 
         if base_color   == XgEnums.BaseColor.GREY:
-            self.color  += Color(127, 127, 127)
+            color       += Color(127, 127, 127)
         elif base_color == XgEnums.BaseColor.RED:
-            self.color  += Color(127, 0, 0)
+            color       += Color(127, 0, 0)
         elif base_color == XgEnums.BaseColor.GREEN:
-            self.color  += Color(0, 127, 0)
+            color       += Color(0, 127, 0)
         elif base_color == XgEnums.BaseColor.BLUE:
-            self.color  += Color(0, 0, 127)
-        
-        super().__init__(*self.color.getRGBTuple())
+            color       += Color(0, 0, 127)
 
-# class ShadedColor(Color):
+        if shade        == XgEnums.Shade.EXTRA_DARK:
+            color       /= 5.0
+        elif shade      == XgEnums.Shade.DARKER:
+            color       /= 2.22
+        elif shade      == XgEnums.Shade.DARK:
+            color       /= 1.33
+        elif shade      == XgEnums.Shade.NORMAL:
+            color       *= 1
+        elif shade      == XgEnums.Shade.LIGHT:
+            color       *= 1.25
+        elif shade      == XgEnums.Shade.LIGHTER:
+            color       *= 1.55
+        elif shade      == XgEnums.Shade.EXTRA_LIGHT:
+            color       *= 1.8
 
-#     def __init__(
-#         self: Xg.Gui.Color,
-#         red_shade: Xg.Core.XgEnums.Shade,
-#         green_shade: Xg.Core.XgEnums.Shade,
-#         blue_shade: Xg.Core.XgEnums.Shade)              -> None                   : ...
+        super().__init__(*color.getRGBTuple())

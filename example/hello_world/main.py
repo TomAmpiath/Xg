@@ -32,6 +32,6 @@ from Xg.Widgets import Application, MainWindow
 
 app = Application()
 main_window = MainWindow()
-main_window.setBackgroundColor(Color(0, 123, 232))
+main_window.setBackgroundColor(Color(124, 25, 255))
 main_window.show()
 app.exec()
