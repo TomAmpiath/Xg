@@ -24,7 +24,7 @@ from Xg.Core import XgEnums, XgException
 
 
 class Color:
-    
+
     def __init__(self, red = 0, green = 0, blue = 0):
         """Initializes Color for given rgb values.
 
@@ -36,7 +36,7 @@ class Color:
             Green value. (default is 0)
         blue: int
             Blue value. (default is 0)
-        
+
         Returns
         -------
         None.
@@ -108,28 +108,17 @@ class ColorPreset(Color):
 
         color = Color(0, 0, 0)
 
-        if base_color   == XgEnums.BaseColor.GREY:
-            color       += Color(127, 127, 127)
-        elif base_color == XgEnums.BaseColor.RED:
-            color       += Color(127, 0, 0)
-        elif base_color == XgEnums.BaseColor.GREEN:
-            color       += Color(0, 127, 0)
-        elif base_color == XgEnums.BaseColor.BLUE:
-            color       += Color(0, 0, 127)
+        if base_color   == XgEnums.BaseColor.GREY   : color += Color(127, 127, 127)
+        elif base_color == XgEnums.BaseColor.RED    : color += Color(127, 0, 0)
+        elif base_color == XgEnums.BaseColor.GREEN  : color += Color(0, 127, 0)
+        elif base_color == XgEnums.BaseColor.BLUE   : color += Color(0, 0, 127)
 
-        if shade        == XgEnums.Shade.EXTRA_DARK:
-            color       /= 5.0
-        elif shade      == XgEnums.Shade.DARKER:
-            color       /= 2.22
-        elif shade      == XgEnums.Shade.DARK:
-            color       /= 1.33
-        elif shade      == XgEnums.Shade.NORMAL:
-            color       *= 1
-        elif shade      == XgEnums.Shade.LIGHT:
-            color       *= 1.25
-        elif shade      == XgEnums.Shade.LIGHTER:
-            color       *= 1.55
-        elif shade      == XgEnums.Shade.EXTRA_LIGHT:
-            color       *= 1.8
+        if shade        == XgEnums.Shade.EXTRA_DARK : color /= 5.0
+        elif shade      == XgEnums.Shade.DARKER     : color /= 2.22
+        elif shade      == XgEnums.Shade.DARK       : color /= 1.33
+        elif shade      == XgEnums.Shade.NORMAL     : color *= 1
+        elif shade      == XgEnums.Shade.LIGHT      : color *= 1.25
+        elif shade      == XgEnums.Shade.LIGHTER    : color *= 1.55
+        elif shade      == XgEnums.Shade.EXTRA_LIGHT: color *= 1.8
 
         super().__init__(*color.getRGBTuple())
