@@ -99,9 +99,6 @@ class MainWindow:
             glfw.terminate()
             raise Exception("glfw window can not be created")
 
-        # set window position
-        glfw.set_window_pos(self._glfwWindow, 400, 200)
-
         # make the context current
         glfw.make_context_current(self._glfwWindow)
 
