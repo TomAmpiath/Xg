@@ -22,6 +22,8 @@
 
 import enum
 
+HexColor = str
+
 
 class XgEnums:
     class BaseColor(enum.Enum):

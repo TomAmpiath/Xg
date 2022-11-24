@@ -24,6 +24,11 @@ from __future__ import annotations
 
 import enum
 
+from typing_extensions import TypeAlias
+
+HexColor: TypeAlias = str
+
+
 class XgEnums:
     class BaseColor(enum.Enum):
 
