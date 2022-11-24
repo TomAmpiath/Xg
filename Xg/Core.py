@@ -22,26 +22,24 @@
 
 import enum
 
-HexColor = str
-
 
 class XgEnums:
     class BaseColor(enum.Enum):
 
-        GREY        = enum.auto()
-        RED         = enum.auto()
-        GREEN       = enum.auto()
-        BLUE        = enum.auto()
+        GREY = enum.auto()
+        RED = enum.auto()
+        GREEN = enum.auto()
+        BLUE = enum.auto()
 
     class Shade(enum.Enum):
 
         EXTRA_LIGHT = enum.auto()
-        LIGHTER     = enum.auto()
-        LIGHT       = enum.auto()
-        NORMAL      = enum.auto()
-        DARK        = enum.auto()
-        DARKER      = enum.auto()
-        EXTRA_DARK  = enum.auto()
+        LIGHTER = enum.auto()
+        LIGHT = enum.auto()
+        NORMAL = enum.auto()
+        DARK = enum.auto()
+        DARKER = enum.auto()
+        EXTRA_DARK = enum.auto()
 
 
 class XgException:

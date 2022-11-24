@@ -25,10 +25,28 @@ import inspect
 import glfw
 from OpenGL import GL
 
-from Xg.Core import XgEnums
-from Xg.Gui import ColorPreset
+from Xg.Core import XgEnums, XgException
+from Xg.Gui import Color, ColorPreset
 
 _applicationInstance = None
+
+
+def _hexColorToClampedRGB(hexColor):
+    """Takes in a hexcolor object and returns the clamped rgb values.
+
+    Parameters
+    ----------
+    hexColor: str
+        The input HexColor value.
+
+    Returns
+    -------
+    rgb_clamped: Tuple[float, float, float]
+        RGB values clamped to range 0-1
+    """
+    stripped_hex = hexColor.lstrip('#')
+    rgb_clamped = tuple(int(stripped_hex[i : i + 2], 16) / 255 for i in (0, 2, 4))
+    return rgb_clamped
 
 
 class Application:
@@ -39,11 +57,16 @@ class Application:
         if not _applicationInstance:
             _applicationInstance = self
         else:
-            raise Exception("Only single instane of Appplication can be created.")
+            raise Exception('Only single instane of Appplication can be created.')
         self._mainWindow = None
 
     def exec(self):
-        """Application main event loop"""
+        """Application main event loop
+
+        Returns
+        -------
+        None
+        """
         if self._mainWindow:
             while not glfw.window_should_close(self._mainWindow._glfwWindow):
                 glfw.poll_events()
@@ -59,7 +82,7 @@ class Application:
 
 
 class MainWindow:
-    def __init__(self, title=inspect.stack()[-1].filename.split("/")[-1].rstrip(".py"), width=800, height=600):
+    def __init__(self, title=inspect.stack()[-1].filename.split('/')[-1].rstrip('.py'), width=800, height=600):
         """The main window of the application
 
         Parameters
@@ -74,10 +97,15 @@ class MainWindow:
         Returns
         -------
         None
+
+        Raises
+        ------
+        Exception
+            When glfw cannot be initialized
         """
         global _applicationInstance
         if not _applicationInstance:
-            raise Exception("Application instance is not created.")
+            raise Exception('Application instance is not created.')
 
         self._width = width
         self._height = height
@@ -87,21 +115,35 @@ class MainWindow:
 
         # initializing glfw library
         if not glfw.init():
-            raise Exception("glfw cannot be initialized")
+            raise Exception('glfw cannot be initialized')
 
     def setBackgroundColor(self, color):
         """Set the given color as the background color
 
         Parameters
         ----------
-        color: Xg.Gui.Color
+        color: Xg.Gui.Color | Xg.Core.HexColor | RGBClamped | RGBTuple
             The color to be set as background.
 
         Returns
         -------
         None
+
+        Raises
+        ------
+        XgException.UnsupportedColor
+            When passed argument is not a supported color object
         """
-        self.backgroundColor = color.getRGBTupleClamped()
+        if isinstance(color, Color):
+            self.backgroundColor = color.getRGBTupleClamped()
+        elif isinstance(color, str):
+            self.backgroundColor = _hexColorToClampedRGB(color)
+        elif isinstance(color, tuple) and all((isinstance(c, int) for c in color)):
+            self.backgroundColor = tuple(c / 255 for c in color)
+        elif isinstance(color, tuple) and all((isinstance(c, float) for c in color)):
+            self.backgroundColor = color
+        else:
+            raise XgException.UnsupportedColor()
 
     def show(self):
         """Show the main window
@@ -109,6 +151,11 @@ class MainWindow:
         Returns
         -------
         None
+
+        Raises
+        ------
+        Exception
+            When glfw window cannot be created
         """
         global _applicationInstance
 
@@ -117,7 +164,7 @@ class MainWindow:
         # check if window was created
         if not self._glfwWindow:
             glfw.terminate()
-            raise Exception("glfw window can not be created")
+            raise Exception('glfw window can not be created')
 
         # make the context current
         glfw.make_context_current(self._glfwWindow)
