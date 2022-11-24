@@ -70,6 +70,10 @@ class MainWindow:
             Window height (default is 600)
         title: str
             Window title (default is File name of caller)
+
+        Returns
+        -------
+        None
         """
         global _applicationInstance
         if not _applicationInstance:
@@ -86,10 +90,26 @@ class MainWindow:
             raise Exception("glfw cannot be initialized")
 
     def setBackgroundColor(self, color):
+        """Set the given color as the background color
+
+        Parameters
+        ----------
+        color: Xg.Gui.Color
+            The color to be set as background.
+
+        Returns
+        -------
+        None
+        """
         self.backgroundColor = color.getRGBTupleClamped()
 
     def show(self):
-        """Show the main window"""
+        """Show the main window
+
+        Returns
+        -------
+        None
+        """
         global _applicationInstance
 
         self._glfwWindow = glfw.create_window(self._width, self._height, self._title, None, None)
