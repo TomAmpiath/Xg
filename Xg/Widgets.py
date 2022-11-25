@@ -122,7 +122,7 @@ class MainWindow:
 
         Parameters
         ----------
-        color: Xg.Gui.Color | Xg.Core.HexColor | RGBClamped | RGBTuple
+        color: Xg.Gui.Color | Hex Color string | Tuple of rgb values (0-255) | Tuple of clamped rgb values (0-1)
             The color to be set as background.
 
         Returns
